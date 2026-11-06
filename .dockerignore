@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+.astro
+
+# Environment files
+.env
+.env.*
+
+# Editor and OS files
+.vscode
+.idea
+.DS_Store
+
+# Git and CI
+.git
+.gitignore
+.github
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Documentation
+*.md
+
+# Logs
+*.log
