@@ -1,0 +1,59 @@
+---
+const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT;
+---
+
+<form data-waitlist data-endpoint={endpoint} class="max-w-[60ch]">
+  <div class="flex items-center gap-3 rounded-md border border-border bg-card py-1 pr-1 pl-3 focus-within:border-ring">
+    <span aria-hidden="true" class="text-muted-foreground select-none">&gt;</span>
+    <label for="waitlist-email" class="sr-only">Email address</label>
+    <input
+      id="waitlist-email"
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="you@company.com"
+      class="min-w-0 flex-1 bg-transparent py-1 outline-none placeholder:text-muted-foreground"
+    />
+    <button
+      type="submit"
+      class="shrink-0 cursor-pointer rounded-sm bg-primary px-3 py-1 text-primary-foreground uppercase hover:bg-foreground disabled:cursor-wait"
+    >
+      Join
+    </button>
+  </div>
+  <p data-status role="status" class="mt-2 min-h-[1.6em] text-muted-foreground"></p>
+</form>
+
+<script>
+  const ERROR = "Couldn't join the waitlist. Please try again later.";
+
+  for (const form of document.querySelectorAll<HTMLFormElement>("[data-waitlist]")) {
+    const status = form.querySelector<HTMLElement>("[data-status]");
+    const button = form.querySelector("button");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!status || !button) return;
+
+      const endpoint = form.dataset.endpoint;
+      button.disabled = true;
+      status.textContent = "";
+      try {
+        if (!endpoint) throw new Error("Missing waitlist endpoint");
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: new FormData(form).get("email") }),
+        });
+        if (!response.ok) throw new Error(`Waitlist responded ${response.status}`);
+        form.reset();
+        status.textContent = "You're on the list.";
+      } catch {
+        status.textContent = ERROR;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>

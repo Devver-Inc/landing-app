@@ -1,0 +1,20 @@
+---
+import { LOOP_STEPS } from "../../data/site";
+import Section from "../ui/Section.astro";
+---
+
+<Section id="loop" title="The loop" hash="a1f3c9e">
+  <ol class="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+    {
+      LOOP_STEPS.map((step, index) => (
+        <li>
+          <h3 class="uppercase">
+            <span class="text-muted-foreground">{String(index + 1).padStart(2, "0")} </span>
+            {step.title}
+          </h3>
+          <p class="mt-1 text-text-secondary">{step.description}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

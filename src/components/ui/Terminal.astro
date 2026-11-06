@@ -1,0 +1,32 @@
+---
+import type { TerminalLine } from "../../data/site";
+
+interface Props {
+	title: string;
+	lines: readonly TerminalLine[];
+}
+
+const { title, lines } = Astro.props;
+
+const TONES = { dim: "text-muted-foreground", accent: "text-primary" };
+const toSpans = (line: TerminalLine) =>
+	typeof line === "string" ? [{ text: line }] : line;
+---
+
+<figure class="overflow-hidden rounded-md border border-border bg-card">
+	<figcaption class="border-b border-border px-3 py-1.5 text-muted-foreground">
+		{title}
+	</figcaption>
+	<div class="overflow-x-auto p-3">
+		{lines.map((line) => (
+			<div class="min-h-lh">
+				{toSpans(line).map(({ text, tone }) => (
+					<span
+						class:list={["whitespace-pre", tone && TONES[tone]]}
+						set:text={text}
+					/>
+				))}
+			</div>
+		))}
+	</div>
+</figure>

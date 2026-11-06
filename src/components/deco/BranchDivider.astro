@@ -1,0 +1,26 @@
+---
+interface Props {
+  branch: string;
+  message: string;
+}
+
+const { branch, message } = Astro.props;
+---
+
+<svg
+  aria-hidden="true"
+  width="360"
+  height="104"
+  viewBox="0 0 360 104"
+  fill="none"
+  class="-ml-6 max-w-[calc(100%+1.5rem)] sm:-ml-10"
+>
+  <path
+    d="M3.5 8C3.5 26 23.5 18 23.5 36V68C23.5 86 3.5 78 3.5 96"
+    class="stroke-muted-foreground/40"
+  ></path>
+  <circle cx="23.5" cy="42" r="2.5" class="fill-muted-foreground"></circle>
+  <circle cx="23.5" cy="64" r="2.5" class="fill-muted-foreground"></circle>
+  <text x="38" y="46" font-size="12" class="fill-muted-foreground">{branch}</text>
+  <text x="38" y="68" font-size="12" class="fill-muted-foreground">{message}</text>
+</svg>

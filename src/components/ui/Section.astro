@@ -1,0 +1,23 @@
+---
+import CommitNode from "../deco/CommitNode.astro";
+
+interface Props {
+  id: string;
+  title: string;
+  hash: string;
+}
+
+const { id, title, hash } = Astro.props;
+const headingId = `${id}-heading`;
+---
+
+<section id={id} aria-labelledby={headingId} class="scroll-mt-8 py-8">
+  <div class="relative mb-5 flex items-baseline justify-between gap-4">
+    <CommitNode />
+    <h2 id={headingId} class="font-bold uppercase">
+      <span aria-hidden="true" class="text-muted-foreground">## </span>{title}
+    </h2>
+    <span aria-hidden="true" class="text-muted-foreground">{hash}</span>
+  </div>
+  <slot />
+</section>

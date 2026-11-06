@@ -1,0 +1,13 @@
+---
+import { CHANNELS, LINKS } from "../../data/site";
+import DataTable from "../ui/DataTable.astro";
+import Section from "../ui/Section.astro";
+---
+
+<Section id="install" title="Install" hash="19d7fa3">
+  <DataTable caption="Devver CLI release channels" {...CHANNELS} />
+  <p class="mt-5 max-w-[60ch] text-text-secondary">
+    Native executables for macOS on Apple Silicon and Linux x64. Standalone binaries are available
+    from <a href={LINKS.releases} class="underline hover:text-foreground">GitHub Releases</a>.
+  </p>
+</Section>

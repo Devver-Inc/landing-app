@@ -1,0 +1,15 @@
+---
+interface Props {
+  head?: boolean;
+}
+
+const { head = false } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  class:list={[
+    "absolute top-[0.55em] -left-6 size-[7px] rounded-full sm:-left-10",
+    head ? "bg-primary" : "bg-muted-foreground",
+  ]}
+></span>

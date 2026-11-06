@@ -1,0 +1,32 @@
+---
+import { FAQ } from "../../data/site";
+import JsonLd from "../seo/JsonLd.astro";
+import Section from "../ui/Section.astro";
+
+const faqSchema = {
+  "@type": "FAQPage",
+  mainEntity: FAQ.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Section id="faq" title="FAQ" hash="e62b1c0">
+  <div class="border-t border-border">
+    {
+      FAQ.map(({ question, answer }) => (
+        <details class="group border-b border-border">
+          <summary class="flex cursor-pointer list-none justify-between gap-4 py-2 hover:text-primary [&::-webkit-details-marker]:hidden">
+            <span>{question}</span>
+            <span aria-hidden="true" class="text-muted-foreground group-open:hidden">+</span>
+            <span aria-hidden="true" class="hidden text-muted-foreground group-open:inline">-</span>
+          </summary>
+          <p class="max-w-[60ch] pb-3 text-text-secondary">{answer}</p>
+        </details>
+      ))
+    }
+  </div>
+  <JsonLd data={faqSchema} />
+</Section>

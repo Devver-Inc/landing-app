@@ -1,0 +1,36 @@
+---
+import { DEPLOY_OUTPUT, LINKS, SITE } from "../../data/site";
+import CommitNode from "../deco/CommitNode.astro";
+import BracketLink from "../ui/BracketLink.astro";
+import CopyCommand from "../ui/CopyCommand.astro";
+import Terminal from "../ui/Terminal.astro";
+---
+
+<section aria-labelledby="hero-heading" class="pt-10 pb-8 sm:pt-16">
+	<div class="relative">
+		<CommitNode />
+		<h1
+			id="hero-heading"
+			class="max-w-[24ch] text-2xl leading-tight font-bold text-balance uppercase sm:text-4xl"
+		>
+			The fast lane from code to feedback
+		</h1>
+	</div>
+	<p class="mt-5 max-w-[60ch] text-text-secondary">
+		Devver is a test deployment service for the space between writing code and
+		shipping a feature. Deploy a revision, get a URL, and share it where your
+		team already works.
+	</p>
+
+	<div class="mt-7 max-w-[60ch]">
+		<CopyCommand command={SITE.install} />
+	</div>
+	<div class="mt-4 flex flex-wrap gap-x-3">
+		<BracketLink href={LINKS.quickstart} label="Quickstart" />
+		<BracketLink href={LINKS.github} label="View on GitHub" />
+	</div>
+
+	<div class="mt-10">
+		<Terminal title="example — feat/checkout-v2" lines={DEPLOY_OUTPUT} />
+	</div>
+</section>

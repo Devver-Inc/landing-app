@@ -1,0 +1,35 @@
+---
+interface Props {
+  command: string;
+}
+
+const { command } = Astro.props;
+---
+
+<div
+  data-copy-command
+  class="flex items-center justify-between gap-4 rounded-md border border-border bg-card px-3 py-2"
+>
+  <code class="min-w-0 overflow-x-auto whitespace-nowrap">
+    <span aria-hidden="true" class="text-muted-foreground select-none">$ </span>{command}
+  </code>
+  <button
+    type="button"
+    data-command={command}
+    class="shrink-0 cursor-pointer text-muted-foreground uppercase hover:text-foreground"
+  >
+    Copy
+  </button>
+</div>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-command]")) {
+    button.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(button.dataset.command ?? "");
+      button.textContent = "Copied";
+      setTimeout(() => {
+        button.textContent = "Copy";
+      }, 1500);
+    });
+  }
+</script>
