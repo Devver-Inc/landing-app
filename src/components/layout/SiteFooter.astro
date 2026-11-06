@@ -1,0 +1,22 @@
+---
+import { FOOTER_LINKS, SITE } from "../../data/site";
+import BracketLink from "../ui/BracketLink.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-8 text-muted-foreground">
+  <p>
+    <span aria-hidden="true" class="mr-3 bg-foreground px-1 text-background">(END)</span>
+    © {year} {SITE.name}
+  </p>
+  <ul class="flex flex-wrap gap-x-3">
+    {
+      FOOTER_LINKS.map((link) => (
+        <li>
+          <BracketLink {...link} />
+        </li>
+      ))
+    }
+  </ul>
+</footer>

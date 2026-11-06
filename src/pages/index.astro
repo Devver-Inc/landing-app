@@ -1,11 +1,54 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BranchDivider from "../components/deco/BranchDivider.astro";
+import SiteFooter from "../components/layout/SiteFooter.astro";
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import CloudOrLocal from "../components/sections/CloudOrLocal.astro";
+import Commands from "../components/sections/Commands.astro";
+import Cta from "../components/sections/Cta.astro";
+import Faq from "../components/sections/Faq.astro";
+import Hero from "../components/sections/Hero.astro";
+import Install from "../components/sections/Install.astro";
+import Loop from "../components/sections/Loop.astro";
+import Waitlist from "../components/sections/Waitlist.astro";
+import JsonLd from "../components/seo/JsonLd.astro";
+import { LINKS, SITE } from "../data/site";
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const softwareSchema = {
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  description: SITE.description,
+  url: Astro.site?.href,
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "macOS, Linux",
+  downloadUrl: LINKS.npm,
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: Astro.site?.href,
+    logo: new URL("/logo.svg", Astro.site).href,
+    sameAs: [LINKS.organization],
+  },
+};
 ---
 
 <Layout>
-	<Welcome />
+	<SiteHeader />
+	<main
+		id="main"
+		class="relative pl-6 before:absolute before:inset-y-0 before:left-[3px] before:w-px before:bg-muted-foreground/40 sm:pl-10"
+	>
+		<Hero />
+		<Loop />
+		<BranchDivider branch="feat/checkout-v2" message="deployed, url shared" />
+		<CloudOrLocal />
+		<Commands />
+		<BranchDivider branch="fix/pay-button" message="feedback addressed" />
+		<Install />
+		<Faq />
+		<Waitlist />
+		<Cta />
+	</main>
+	<SiteFooter />
+	<JsonLd data={softwareSchema} />
 </Layout>

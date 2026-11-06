@@ -1,0 +1,24 @@
+---
+import Section from "../ui/Section.astro";
+import Terminal from "../ui/Terminal.astro";
+
+const dim = "text-muted-foreground";
+---
+
+<Section id="terminal" title="Lives in your terminal" hash="c40e6b8">
+  <p class="mb-5 max-w-[60ch] text-text-secondary">
+    Scriptable commands when you know what you want. Run <code class="text-foreground">devver</code> alone to
+    browse your deployments in the terminal UI.
+  </p>
+  <Terminal title="devver">
+devver
+├── deploy        <span class={dim}>deploy the committed revision</span>
+├── init          <span class={dim}>create the project's config</span>
+├── new server    <span class={dim}>create and attach a local server</span>
+├── cloud         <span class={dim}>switch to Devver cloud</span>
+├── auth login    <span class={dim}>sign in from the browser</span>
+├── project list  <span class={dim}>select your project</span>
+└── secret        <span class={dim}>manage environment secrets</span>
+  </Terminal>
+  <p class="mt-3 text-muted-foreground">j/k/h/l move · o open · c copy · r rename · q quit</p>
+</Section>

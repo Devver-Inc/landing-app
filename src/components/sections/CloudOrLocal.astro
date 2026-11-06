@@ -1,0 +1,13 @@
+---
+import { TARGETS } from "../../data/site";
+import DataTable from "../ui/DataTable.astro";
+import Section from "../ui/Section.astro";
+---
+
+<Section id="cloud-or-local" title="Cloud or local" hash="7be04d2">
+  <p class="mb-5 max-w-[60ch] text-text-secondary">
+    Two explicit choices. A local URL stays on your machine. Use the cloud when teammates need to
+    open the deployment.
+  </p>
+  <DataTable caption="Local and cloud deployments compared" {...TARGETS} />
+</Section>

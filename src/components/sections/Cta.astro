@@ -1,0 +1,16 @@
+---
+import { SITE } from "../../data/site";
+import CommitNode from "../deco/CommitNode.astro";
+import CopyCommand from "../ui/CopyCommand.astro";
+---
+
+<section aria-labelledby="cta-heading" class="pt-8 pb-16">
+  <div class="relative">
+    <CommitNode head />
+    <h2 id="cta-heading" class="text-xl font-bold uppercase sm:text-2xl">It's still Tuesday</h2>
+  </div>
+  <p class="mt-3 text-text-secondary">Your feature is ready. Give it a URL.</p>
+  <div class="mt-5 max-w-[60ch]">
+    <CopyCommand command={SITE.install} />
+  </div>
+</section>
